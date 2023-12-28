@@ -1,0 +1,100 @@
+<div class="container-fluid" *ngIf="details">
+<div class="row">
+  <div class="col-md-12 ">
+    <div class="card">
+      <div class="card-body">
+      <div  *ngIf="details.event_state==0"class="row" >
+        <div class="col-md-6">
+          <span class="text-primary">
+            Please click on finalize button once you have finished editing all the tabs.<br/>
+          * Note: You cannot edit once finalyzed
+          </span>
+        </div>
+        <div class="col-md-6">
+          <button type="button"class="btn btn-primary mb-2 float-end" (click)="finalize(details)">
+            Finalize
+          </button>
+        </div>
+      </div>
+  
+      <div  *ngIf="details.event_state==1" class="row" >
+        <div class="col-md-6">
+          <h5>Total Carbon Emission : <span class="text-primary">{{details.total_co2_emission  | number:'1.2-2'}} </span></h5>
+          <h5>Offset Amount : <span class="text-primary">{{details.offset_amount  | currency:'AED ':'code':'1.2-3'}} </span></h5>
+        </div>
+        <div class="col-md-6">
+          <button type="button" class="btn btn-primary mb-2 paynowbutton  float-end" (click)="neutralize(details)">
+          Pay now to Neutralize
+          </button>
+        </div>
+      </div>
+      <div  *ngIf="details.event_state==2" class="row" >
+        <div class="col-md-6">
+          <h5>Total Carbon Emission : <span class="text-primary">{{details.total_co2_emission  | number:'1.2-2'}} </span></h5>
+          <h5>Offset Amount : <span class="text-primary">{{details.offset_amount  | currency:'AED ':'code':'1.2-3'}} </span></h5>
+        </div>
+        <div class="col-md-4 text-success m-auto">
+          Payment Done Successfully
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-primary mb-2 paynowbutton  float-end" routerLink="/account/certificate/{{details.certificate_id}}"  >
+            View Certificate
+          </button>
+        </div>
+      </div>
+      <div  *ngIf="details.event_state==3" class="row" >
+        <div class="col-md-6">
+          <h5>Total Carbon Emission : <span class="text-primary">{{details.total_co2_emission  | number:'1.2-2'}} </span></h5>
+          <h5>Offset Amount : <span class="text-primary">{{details.offset_amount  | currency:'AED ':'code':'1.2-3'}} </span></h5>
+        </div>
+        <div class="col-md-6 m-auto">
+            <a role="button" class="paynowbutton text-danger" (click)="neutralize(details)">Payment failed. Retry Payment</a>
+        </div>
+      </div>
+   
+
+    <div class="card" *ngIf="payenabled">
+      <div class="card-body">
+        <form id="payment-form" #form="ngForm" class="w-50" >
+          <div class="one-liner">
+            <div class="card-frame">
+            </div>
+            <button id="pay-button" disabled  class="btn btn-primary">
+              PAY AED {{details.offset_amount}}
+            </button>
+          </div>
+          <input type="hidden" value="{{details.offset_amount}}" id="drive-amount-payment" name="drive-amount-payment" />
+          <input type="hidden" value="{{id}}" id="drive-id-payment" name="drive-id-payment"/> 
+          <input type="hidden" #token id="success-payment-message" class="success-payment-message" name="token" onchange=""/>
+        </form>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3"> <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-calendar-alt"></i></span> </div><h5 class="font-size-14 mb-0">Duration <br/></h5></div><div class="text-muted mt-4"><h5>{{details.duration_in_days}} Days</h5></div></div> </div></div>
+  <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3"> <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-book-reader"></i></span> </div> <h5 class="font-size-14 mb-0">Organiser <br/></h5></div><div class="text-muted mt-4"><h5>{{details.event_organiser}}</h5></div></div> </div></div>
+  <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3"> <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-hamburger"></i></span> </div><h5 class="font-size-14 mb-0">Purpose <br/></h5></div><div class="text-muted mt-4"><h5>{{details.event_purpose}}</h5></div></div> </div></div>
+  <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3"> <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-chalkboard-teacher"></i></span> </div><h5 class="font-size-14 mb-0">Main Contact <br/></h5></div><div class="text-muted mt-4"><h5>{{details.main_contact}}</h5></div></div> </div></div>
+  <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3"> <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-id-badge"></i></span> </div><h5 class="font-size-14 mb-0">Contact Details <br/></h5></div><div class="text-muted mt-4"><h5>{{details.contact_email}}</h5></div></div> </div></div>
+  <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3"> <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-user"></i></span> </div><h5 class="font-size-14 mb-0">Attendees <br/></h5></div><div class="text-muted mt-4"><h5>{{details.number_of_attendees}}</h5></div></div> </div></div>
+  <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3"> <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-map-marker-alt"></i></span> </div><h5 class="font-size-14 mb-0">Country <br/></h5></div><div class="text-muted mt-4"><h5>{{details.location ==1?'UK':'United Arab Emirates'}}</h5></div></div> </div></div>
+  <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3"> <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas  fa-bolt"></i></span> </div><h5 class="font-size-14 mb-0">Total Carbon Emission  <br/></h5></div><div class="text-muted mt-4"><h5>{{details.total_co2_emission | number:'1.2-2'}}</h5></div></div> </div></div>
+
+</div>
+<div class="col-md-12 mb-4"><h5 >Carbon Emission Details </h5></div>
+    <div class="row">
+      <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3">  <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-money-bill"></i></span> </div><h5 class="font-size-14 mb-0">Offset Amount <br/></h5></div><div class="text-muted mt-4"><h5>{{details.offset_amount  | currency:'AED ':'code':'1.2-3'}}</h5></div></div> </div></div>
+      <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3">  <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-hamburger"></i></span> </div><h5 class="font-size-14 mb-0">Food Carbon Emission <br/></h5></div><div class="text-muted mt-4"><h5>{{details.food_co2_emission}}</h5></div></div> </div></div>
+      <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3">  <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-hotel"></i></span> </div><h5 class="font-size-14 mb-0">Event Space Carbon Emission <br/></h5></div><div class="text-muted mt-4"><h5>{{details.eventSpace_co2_emission}}</h5></div></div> </div></div>
+      <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3">  <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-plane-departure"></i></span> </div><h5 class="font-size-14 mb-0">Travel Carbon Emission<br/></h5></div><div class="text-muted mt-4"><h5>{{details.travel_co2_emission}}</h5></div></div> </div></div>
+      <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3">  <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-bed"></i></span> </div><h5 class="font-size-14 mb-0">Stay Carbon Emission<br/></h5></div><div class="text-muted mt-4"><h5>{{details.stay_co2_emission}}</h5></div></div> </div></div>
+      <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3">  <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-gift"></i></span> </div><h5 class="font-size-14 mb-0">Gifting Carbon Emission <br/></h5></div><div class="text-muted mt-4"><h5>{{details.gifting_co2_emission}}</h5></div></div> </div></div>
+      <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3">  <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="far fa-chart-bar"></i></span> </div><h5 class="font-size-14 mb-0">Marketing Carbon Emission <br/></h5></div><div class="text-muted mt-4"><h5>{{details.marketing_co2_emission}}</h5></div></div> </div></div>
+      <div class="col-md-3"> <div class="card"><div class="card-body"><div class="d-flex align-items-center mb-3">  <div class="avatar-xs me-3"><span class="avatar-title rounded-circle bg-soft bg-primary text-primary font-size-18"> <i class="fas fa-tshirt"></i></span> </div><h5 class="font-size-14 mb-0">Clothing Carbon Emission <br/></h5></div><div class="text-muted mt-4"><h5>{{details.clothing_co2_emission}}</h5></div></div> </div></div>
+    </div>
+  
+</div>
+

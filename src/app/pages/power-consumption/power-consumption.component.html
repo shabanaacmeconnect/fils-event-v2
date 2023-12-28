@@ -1,0 +1,78 @@
+<div class="container-fluid">
+
+    <!-- <app-page-title title="Power Consumption" [breadcrumbItems]="breadCrumbItems"></app-page-title> -->
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-body">
+                    <form (ngSubmit)="typeSubmit()" [formGroup]="typeValidationForm">
+                        <div class="row">
+                            <div class="form-group col-md-12 mb-3">
+                                <label class="fw-bold">Electricity Consumption Count</label>
+                                <input type="number" class="form-control"
+                                    formControlName="electricity_consumption_count"
+                                    placeholder="Enter Electricity Consumption Count"
+                                    [ngClass]="{'is-invalid': typesubmit && f.electricity_consumption_count.errors}" />
+                                <div *ngIf="typesubmit && f.electricity_consumption_count.errors"
+                                    class="invalid-feedback">
+                                    <span *ngIf="f.electricity_consumption_count.errors.required">Electricity
+                                        Consumption Count is required.
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12 mb-3">
+                                <label>Gas Consumption Count</label>
+                                <input type="number" class="form-control" formControlName="gas_consumption_count"
+                                    placeholder="Enter Gas Consumption Count"
+                                    [ngClass]="{'is-invalid': typesubmit && f.gas_consumption_count.errors}" />
+                                <div *ngIf="typesubmit && f.gas_consumption_count.errors"
+                                    class="invalid-feedback">
+                                    <span *ngIf="f.gas_consumption_count.errors.required">Gas Consumption Count
+                                        is required.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 mb-3">
+                                <label>Water Consumption Count</label>
+                                <select class="form-control" formControlName="water_consumption_count">
+                                    <option [ngValue]="null" [disabled]="true">Choose Water Consumption Count
+                                    </option>
+                                    <option [ngValue]=0>10</option>
+                                    <option [ngValue]=1>15</option>
+                                    <option [ngValue]=2>20</option>
+                                    <option [ngValue]=3>25</option>
+                                </select>
+                                <div *ngIf="typesubmit && f.water_consumption_count.errors"
+                                    class="invalid-feedback">
+                                    <span *ngIf="f.water_consumption_count.errors.required">Water Consumption
+                                        Count
+                                        is required.</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group mb-2 col-md-12 mb-0 mt-3">
+                            <div>
+                                <div>
+                                    <button type="reset" class="btn btn-secondary float-end">
+                                        Reset
+                                    </button>
+                                    <button type="submit" class="btn btn-primary  float-end me-1">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+               
+              </div>  
+               
+            </div>
+          
+  </div>

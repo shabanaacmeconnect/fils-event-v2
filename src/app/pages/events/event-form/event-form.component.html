@@ -1,0 +1,143 @@
+<div class="modal-header">
+    <h3 class="modal-title mt-0">{{title}} Event</h3>
+    <button type="button" class="btn-close" (click)="activeModal.dismiss('Cross click')" aria-hidden="true"></button>
+</div>
+<div class="modal-body">
+
+    <form (ngSubmit)="typeSubmit()" [formGroup]="typeValidationForm" class="row">
+
+
+        <div class="form-group mb-3 col-md-6">
+            <label>Name Of Event</label>
+            <input type="text" class="form-control" formControlName="event_name" placeholder="Enter Name Of Event"
+                [ngClass]="{'is-invalid': typesubmit && f.event_name.errors}" />
+            <div *ngIf="typesubmit && f.event_name.errors" class="invalid-feedback">
+                <span *ngIf="f.event_name.errors.required">Name Of Event is required.</span>
+                <span
+                    *ngIf="f.event_name.errors.minLength || f.event_name.errors.maxLength || f.event_name.errors.pattern">Name
+                    Of Event is
+                    invalid.</span>
+            </div>
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <label>Purpose Of Event</label>
+            <input type="text" class="form-control" formControlName="event_purpose"
+                placeholder="Enter Purpose Of Event"
+                [ngClass]="{'is-invalid': typesubmit && f.event_purpose.errors}" />
+            <div *ngIf="typesubmit && f.event_purpose.errors" class="invalid-feedback">
+                <span *ngIf="f.event_purpose.errors.required">Purpose Of Event is required.</span>
+                <span
+                    *ngIf="f.event_purpose.errors.minLength || f.event_purpose.errors.maxLength || f.event_purpose.errors.pattern">Purpose
+                    Of Event is
+                    invalid.</span>
+            </div>
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <label> Number Of Attendees</label>
+            <input type="number" class="form-control" formControlName="number_of_attendees"
+                placeholder="Enter Number Of Attendees"
+                [ngClass]="{'is-invalid': typesubmit && f.number_of_attendees.errors}" />
+            <div *ngIf="typesubmit && f.number_of_attendees.errors" class="invalid-feedback">
+                <span *ngIf="f.number_of_attendees.errors.required">Number Of Attendees is required.</span>
+                <span
+                    *ngIf="f.number_of_attendees.errors.minLength || f.number_of_attendees.errors.maxLength || f.number_of_attendees.errors.pattern">
+                    Number Of Attendees is invalid.</span>
+            </div>
+        </div>
+
+
+        <div class="form-group mb-3 col-md-6">
+            <label>Select Location</label>
+            <select class="form-control" formControlName="location"
+                [ngClass]="{'is-invalid': typesubmit && f.location.errors}">
+                <option [ngValue]="null" [disabled]="true">Choose Location</option>
+                <option [ngValue]=1>UK</option>
+                <option [ngValue]=2>United Arab Emirates</option>
+            </select>
+            <div *ngIf="typesubmit && f.location.errors" class="invalid-feedback">
+                <span *ngIf="f.location.errors.required">Location is required.</span>
+            </div>
+        </div>
+        <div class="form-group mb-3 col-md-6">
+            <label> Event Date</label>
+            <input type="date" class="form-control" formControlName="event_date"
+                placeholder=" "
+                [ngClass]="{'is-invalid': typesubmit && f.event_date.errors}" />
+            <div *ngIf="typesubmit && f.event_date.errors" class="invalid-feedback">
+                <span *ngIf="f.event_date.errors.required">Duration in Day is required.</span>
+                <span
+                    *ngIf="f.event_date.errors.minLength || f.event_date.errors.maxLength || f.event_date.errors.pattern">
+                    Duration in Day is invalid.</span>
+            </div>
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <label> Duration in Day</label>
+            <input type="number" class="form-control" formControlName="duration_in_days"
+                placeholder="Enter Duration in Day"
+                [ngClass]="{'is-invalid': typesubmit && f.duration_in_days.errors}" />
+            <div *ngIf="typesubmit && f.duration_in_days.errors" class="invalid-feedback">
+                <span *ngIf="f.duration_in_days.errors.required">Duration in Day is required.</span>
+                <span
+                    *ngIf="f.duration_in_days.errors.minLength || f.duration_in_days.errors.maxLength || f.duration_in_days.errors.pattern">
+                    Duration in Day is invalid.</span>
+            </div>
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <label>Event Organiser</label>
+            <input type="text" class="form-control" formControlName="event_organiser" placeholder="Event Organiser"
+                [ngClass]="{'is-invalid': typesubmit && f.event_organiser.errors}" />
+            <div *ngIf="typesubmit && f.event_organiser.errors" class="invalid-feedback">
+                <span *ngIf="f.event_organiser.errors.required">Event Organiser is required.</span>
+                <span
+                    *ngIf="f.event_organiser.errors.minLength || f.event_organiser.errors.maxLength || f.event_organiser.errors.pattern">Event
+                    Organiser is
+                    invalid.</span>
+            </div>
+        </div>
+
+
+
+        <div class="form-group mb-3 col-md-6">
+            <label>Main Contact</label>
+            <input type="text" class="form-control" formControlName="main_contact" placeholder="Enter Main Contact"
+                [ngClass]="{'is-invalid': typesubmit && f.main_contact.errors}" />
+            <div *ngIf="typesubmit && f.main_contact.errors" class="invalid-feedback">
+                <span *ngIf="f.main_contact.errors.required">Main Contact is required.</span>
+                <span
+                    *ngIf="f.main_contact.errors.minLength || f.main_contact.errors.maxLength || f.main_contact.errors.pattern">Main
+                    Contact is
+                    invalid.</span>
+            </div>
+        </div>
+
+        <div class="form-group mb-3 col-md-6">
+            <label>Contact Details</label>
+            <input type="text" class="form-control" formControlName="contact_email" placeholder="Enter Email"
+                [ngClass]="{'is-invalid': typesubmit && f.contact_email.errors}" />
+            <div *ngIf="typesubmit && f.contact_email.errors" class="invalid-feedback">
+                <span *ngIf="f.contact_email.errors.required"> Contact Email is required.</span>
+                <span
+                    *ngIf="f.contact_email.errors.email || f.contact_email.errors.maxLength || f.contact_email.errors.pattern">Contact
+                    Email
+                    is invalid.</span>
+            </div>
+        </div>
+
+
+        <div class="form-group mb-5 mt-4">
+            <div>
+                <button type="submit" class="btn btn-primary float-end">
+                    Submit
+                </button>
+                <button type="reset" class="btn btn-secondary me-3 float-end">
+                    Reset
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,12 @@
+<form id="payment-form" #form="ngForm" class="w-100" >
+    <div class="one-liner">
+      <div class="card-frame">
+      </div>
+      <button id="pay-button" disabled >
+        PAY AED 100
+      </button>
+    </div>
+    <!-- <input type="hidden" value="{{amount}}" id="drive-amount-payment" name="drive-amount-payment" />
+    <input type="hidden" value="{{id}}" id="drive-id-payment" name="drive-id-payment"/> -->
+    <input type="hidden" #token id="success-payment-message" class="success-payment-message" name="token" onchange=""/>
+  </form>

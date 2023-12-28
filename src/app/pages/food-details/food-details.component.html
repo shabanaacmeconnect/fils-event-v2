@@ -1,0 +1,115 @@
+<div class="container-fluid">
+
+    <!-- <app-page-title title="Food Details" [breadcrumbItems]="breadCrumbItems"></app-page-title> -->
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Food Consumption
+                            <span class="float-end ">Carbon Emission : <span class="text-success">{{details.food_co2_emission}}</span></span>
+                       </h4>
+                       <p class="card-title-desc mb-0">Description</p>
+
+                    </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                   
+                    <form (ngSubmit)="typeSubmit()" [formGroup]="typeValidationForm">
+
+                        <div class="row">
+                            <div class="form-group col-md-6 mb-3">
+                                <label class="fw-bold">Provide the approximate weight of food and drink bought</label>
+                                <input type="number"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" class="form-control" formControlName="total_food_weight"
+                                    placeholder="Enter provide the approximate weight of food and drink bought"
+                                    [ngClass]="{'is-invalid': typesubmit && f.total_food_weight.errors}" />
+                                <div *ngIf="typesubmit && f.total_food_weight.errors" class="invalid-feedback">
+                                    <span *ngIf="f.total_food_weight.errors.required">provide the approximate
+                                        weight of food and
+                                        drink bought is required.</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 mb-3">
+                                <label class="fw-bold">If there are food trucks, provide the number of foodtrucks on-site</label>
+                                <input type="number" [ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" class="form-control" formControlName="total_food_truck_count"
+                                    placeholder="Enter if there are food trucks, provide the number of foodtrucks on-site"
+                                    [ngClass]="{'is-invalid': typesubmit && f.total_food_truck_count.errors}" />
+                                <div *ngIf="typesubmit && f.total_food_truck_count.errors"
+                                    class="invalid-feedback">
+                                    <span *ngIf="f.total_food_truck_count.errors.required">if there are food
+                                        trucks, provide the
+                                        number of foodtrucks on-site is required.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6 mb-3">
+                                <label class="fw-bold">How are you sourcing the food for the event</label>
+                                <select class="form-control"  [ngStyle]="details.event_state==0?null:{'pointer-events': 'none'}"   formControlName="food_sources">
+                                    <option></option>
+                                    <option value="1">Some of the food bought will be locally sourced			</option>
+                                    <option value="2">We're not worrying about where the food comes from</option>
+                                    <option value="3">All of the food bought is locally sourced</option>
+                                </select>
+                              
+                                <div *ngIf="typesubmit && f.food_sources.errors" class="invalid-feedback">
+                                    <span *ngIf="f.food_sources.errors.required">How are you sourcing the food
+                                        for the event
+                                        is required.</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 mb-3">
+                                <label class="fw-bold">What will be the method to dispose of food waste</label>
+                                <select class="form-control" [ngStyle]="details.event_state==0?null:{'pointer-events':'none'}"  formControlName="food_dispose_method">
+                                    <option></option>
+                                    <option value="1">Combustion</option>
+                                    <option value="2">Composting</option>
+                                    <option value="3">Landfill</option>
+                                    <option value="4">Anaerobic digestion</option>
+                                </select>
+                                <div *ngIf="typesubmit && f.food_dispose_method.errors"
+                                    class="invalid-feedback">
+                                    <span *ngIf="f.food_dispose_method.errors.required">What will be the method
+                                        to dispose of
+                                        food waste is required.</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 mb-3">
+                                <label class="fw-bold">What % of the purchased food is expected to be wasted</label><br/>
+                                    <input type="range" class="" [ngStyle]="details.event_state==0?null:{'pointer-events':'none'}"   id="volume" name="volume" min="0" max="100" oninput="this.nextElementSibling.value = this.value"  formControlName="food_waste_perc"/><output class="rangepicker ms-2">{{f.food_waste_perc.value}}</output>
+
+                                <div *ngIf="typesubmit && f.food_waste_perc.errors" class="invalid-feedback">
+                                    <span *ngIf="f.food_waste_perc.errors.required">What % of the purchased food
+                                        is expected to
+                                        be wasted is required.</span>
+                                </div>
+                            </div>
+                          
+                        </div>
+
+                        <div class="form-group mb-2 col-md-12 mb-0 mt-3" *ngIf="details.event_state==0">
+                            <div>
+                                <div>
+                                    <button type="reset" class="btn btn-secondary float-end">
+                                        Reset
+                                    </button>
+                                    <button type="submit" class="btn btn-primary  float-end me-1">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+               
+              </div>  
+               
+            </div>
+          
+  </div>
+  <app-food-consumption [event_id]="event_id" (newItemEvent)="addItem($event)"></app-food-consumption>

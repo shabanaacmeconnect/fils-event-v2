@@ -1,0 +1,45 @@
+
+<div class="background-image" >		<button (click)="downloadPdf()" class="pdfbutton btn text-white "><i class="bx bx-printer text-white font-size-20 me-1 "></i>Download Certificate</button>
+	<img src="../../../../assets/images/certificate/body-bg.jpg" >
+		</div>
+	
+		<div class="certificate-bx">
+			<div  #contentToConvert>
+
+				<div class="image-bx11">
+					<img src="../../../../assets/images/certificate/image-101.png">
+					<p>These breathtaking spectacles, born from a cascade of human-made pollution, carry adeeper truth within their beauty. In the world's most heavily polluted cities, the sunsets often paint the skies in hues of orange and red</p>
+				</div>
+				<div class="content-coverdbx1">
+					<div class="certifate-titlebx">
+						<h2>Certificate of carbon removal</h2>
+						<div class="label-img"><img src="../../../../assets/images/certificate/label-img.png"></div>
+					</div>
+					<div class="issue-datebx1">
+						<p>Issue Date: {{details.issued_date|date }}</p>
+						<p style="margin-bottom:0;">Issued to: {{details.issued_to }}</p>
+						<br>
+						<p>This Certificate is a proof that</p>
+						<h3>{{details.total_co2_emission |number}} tonnes of CO<span>2</span></h3>
+						<p class="contentbx1">were successfully removed from the atmosphere.<br>
+						Your dedication to combating climate change is making a profound impact.
+						</p>
+						<div class="scanner-bx1">
+							<div class="carbon-capturebx1">
+								<div class="scnner-textbx">
+									<p>Project category:</p>
+									<h5>{{details.cause_name}}</h5>
+								</div>
+								<div class="verra-img"><img src="../../../../assets/images/certificate/verra-img.png"></div>
+							</div>
+							<div class="scanner-img"><img src="../../../../assets/images/certificate/scanner-img.png"></div>
+						</div>
+					</div>
+					<div class="bottom-sec01">
+						<p>Order no.</p>
+						<h3>{{details.transaction_id}}</h3>
+						<p class="copyright01">Issued by <img src="../../../../assets/images/certificate/logo-bottom.png"> <em>INNOVATION</em></p>
+					</div>
+				</div>
+			</div>
+		</div>

@@ -1,0 +1,81 @@
+<div class="container-fluid">
+
+    <!-- <app-page-title title="Event" [breadcrumbItems]="breadCrumbItems"></app-page-title> -->
+
+    <div class="row">
+       
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
+                                <label>Search</label>
+                                <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="keyword"
+                                    (keyup)="search()" />
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group col-md-12">
+                                <label style="visibility: hidden;">report</label>
+                                <div>
+                                    <div class="text-sm-end">
+                                        <button type="button" class="btn btn-primary mb-2"
+                                            (click)="largeModal()">
+                                            <i class="mdi mdi-plus me-1"></i> New Event
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table project-list-table align-middle table-nowrap dt-responsive nowrap w-100 table-borderless">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Event</th>
+                                        <th>Organiser</th>
+                                        <!-- <th>No. of Attendees </th> -->
+                                        <th>Total Carbon Emission</th>
+                                        <th>State</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  *ngFor="let grid of dataList"  role="button" routerLink="{{grid.id}}">
+                                        <td>{{grid.event_date |date}} </td>
+                                        <td>{{grid.event_name }} </td>
+                                        <td>{{grid.event_organiser}} </td>
+                                        <!-- <td>{{grid.number_of_attendees }} </td> -->
+                                        <td>{{grid.total_co2_emission | number:'1.2-2'}} </td>
+                                        <td><span class="badge badge-rounded" [ngClass]="grid.event_state==0?'bg-warning':grid.event_state==1?'bg-primary':'bg-success'">{{grid.event_state==0?'Draft':grid.event_state==1?'Finalized':'Offset'}} </span> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                            <!-- <div *ngFor="let grid of dataList" class="col-xl-4 col-sm-6">
+                              <div class="card">
+                                <div class="card-body">
+                                  <div class="media">
+                               
+                                    <div class="media-body overflow-hidden">
+                                      <h5 class="text-truncate font-size-15">
+                                        <a routerLink="{{grid.id}}" class="text-dark">{{grid.event_name}}</a>
+                                      </h5>
+                                      <p class="text-muted mb-1">{{grid.event_organiser}}</p>
+                                      <p class="text-muted">  <i class="bx bx-calendar me-1"></i>
+                                        {{grid.created_at |date}}</p>
+                                     
+                                    </div>
+                                  </div>
+                                </div>
+                               
+                              </div>
+                            </div>
+                   -->
+
+                    <app-pagination [page]="pageCopy()" *ngIf="dataList.length>0" (newItemEvent)="changePage($event)">
+                    </app-pagination>
+                    <div class="table-responsive text-primary" *ngIf="dataList.length==0">
+                        * 0 Results Found.
+                    </div>
+               
+    </div>
+    <!-- end row -->
+</div>
+

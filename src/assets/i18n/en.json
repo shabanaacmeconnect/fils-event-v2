@@ -1,0 +1,363 @@
+{
+  "HEADER": {
+    "SEARCH": "Search...",
+   
+    "SETTINGS": "Settings",
+  
+    "LOGIN": {
+      "PROFILE": "Profile",
+      "MY_WALLET": "My Wallet",
+      "SETTINGS": "Settings",
+      "LOCK_SCREEN": "Lock screen",
+      "LOGOUT": "Logout"
+    }
+  },
+  "MENUITEMS": {
+    "MENU": {
+      "TEXT": "Menu"
+    },
+    "DASHBOARDS": {
+      "TEXT": "Dashboards",
+      "BADGE": "04",
+      "LIST": {
+        "DEFAULT": "Default",
+        "SAAS": "Saas",
+        "CRYPTO": "Crypto",
+        "BLOG": "Blog"
+      }
+    },
+    "LAYOUTS": {
+      "TEXT": "Layouts",
+      "LIST": {
+        "HORIZONTAL": "Horizontal",
+        "LIGHTSIDEBAR": "Light Sidebar",
+        "COMPACTSIDEBAR": "Compact Sidebar",
+        "ICONSIDEBAR": "Icons Sidebar",
+        "BOXED": "Boxed Layout",
+        "COLOREDSIDEBAR": "Colored Sidebar",
+        "VERTICAL": "Vertical",
+        "LIGHTTOPBAR": "Light Topbar",
+        "COLOREDHEADER": "Colored Header",
+        "SCROLLABLE": "Scrollable"
+      }
+    },
+    "APPS": {
+      "TEXT": "Apps"
+    },
+    "CALENDAR": {
+      "TEXT": "Calendar"
+    },
+    "CHAT": {
+      "TEXT": "Chat",
+      "BADGE": "New"
+    },
+    "FILEMANAGER": {
+      "TEXT": "File Manager",
+      "BADGE": "New"
+    },
+    "ECOMMERCE": {
+      "TEXT": "Ecommerce",
+      "LIST": {
+        "PRODUCTS": "Products",
+        "PRODUCTDETAIL": "Product Detail",
+        "ORDERS": "Orders",
+        "CUSTOMERS": "Customers",
+        "CART": "Cart",
+        "CHECKOUT": "Checkout",
+        "SHOPS": "Shops",
+        "ADDPRODUCT": "Add Product"
+      }
+    },
+    "CRYPTO": {
+      "TEXT": "Crypto",
+      "LIST": {
+        "WALLET": "Wallet",
+        "BUY/SELL": "Buy/Sell",
+        "EXCHANGE": "Exchange",
+        "LENDING": "Lending",
+        "ORDERS": "Orders",
+        "KYCAPPLICATION": "KYC Application",
+        "ICOLANDING": "ICO Landing"
+      }
+    },
+    "EMAIL": {
+      "TEXT": "Email",
+      "LIST": {
+        "INBOX": "Inbox",
+        "READEMAIL": "Read Email",
+        "TEMPLATE": {
+          "BADGE": "New",
+          "TEXT": "Template",
+          "LIST": {
+            "BASIC": "Basic Action",
+            "ALERT": "Alert Email",
+            "BILLING": "Billing Email"
+          }
+        }
+      }
+    },
+    "INVOICES": {
+      "TEXT": "Invoices",
+      "LIST": {
+        "INVOICELIST": "Invoice List",
+        "INVOICEDETAIL": "Invoice Detail"
+      }
+    },
+    "PROJECTS": {
+      "TEXT": "Projects",
+      "LIST": {
+        "GRID": "Projects Grid",
+        "PROJECTLIST": "Projects List",
+        "OVERVIEW": "Project Overview",
+        "CREATE": "Create New"
+      }
+    },
+    "TASKS": {
+      "TEXT": "Tasks",
+      "LIST": {
+        "TASKLIST": "Task List",
+        "KANBAN": "Kanban Board",
+        "CREATETASK": "Create Task"
+      }
+    },
+    "CONTACTS": {
+      "TEXT": "Contacts",
+      "LIST": {
+        "USERGRID": "User Grid",
+        "USERLIST": "User List",
+        "PROFILE": "Profile"
+      }
+    },
+    "BLOG": {
+      "TEXT": "Blog",
+      "BADGE": "New",
+      "LIST": {
+        "BLOGLIST": "Blog List",
+        "BLOGGRID": "Blog Grid",
+        "DETAIL": "Blog Details"
+      }
+    },
+    "PAGES": {
+      "TEXT": "Pages"
+    },
+    "AUTHENTICATION": {
+      "TEXT": "Authentication",
+      "BADGE": "New",
+      "LIST": {
+        "LOGIN": "Login",
+        "LOGIN2": "Login 2",
+        "REGISTER": "Register",
+        "REGISTER2": "Register 2",
+        "RECOVERPWD": "Recover Password",
+        "RECOVERPWD2": "Recover Password 2",
+        "LOCKSCREEN": "Lock screen",
+        "LOCKSCREEN2": "Lock screen 2",
+        "CONFIRMMAIL": "Confirm Mail",
+        "CONFIRMMAIL2": "Confirm Mail 2",
+        "EMAILVERIFICATION": "Email verification",
+        "EMAILVERIFICATION2": "Email verification 2",
+        "TWOSTEPVERIFICATION": "Two step verification",
+        "TWOSTEPVERIFICATION2": "Two step verification 2"
+      }
+    },
+    "UTILITY": {
+      "TEXT": "Utility",
+      "LIST": {
+        "STARTER": "Starter Page",
+        "MAINTENANCE": "Maintenance",
+        "TIMELINE": "Timeline",
+        "FAQS": "FAQs",
+        "PRICING": "Pricing",
+        "ERROR404": "Error 404",
+        "ERROR500": "Error 500"
+      }
+    },
+    "COMPONENTS": {
+      "TEXT": "Components"
+    },
+    "UIELEMENTS": {
+      "TEXT": "UI Elements",
+      "LIST": {
+        "ALERTS": "Alerts",
+        "BUTTONS": "Buttons",
+        "CARDS": "Cards",
+        "CAROUSEL": "Carousel",
+        "DROPDOWNS": "Dropdowns",
+        "GRID": "Grid",
+        "IMAGES": "Images",
+        "LIGHTBOX": "Lightbox",
+        "MODALS": "Modals",
+        "RANGESLIDER": "Range Slider",
+        "PROGRESSBAR": "Progress Bars",
+        "SWEETALERT": "Sweet Alert",
+        "TABS": "Tabs & Accordions",
+        "TYPOGRAPHY": "Typography",
+        "VIDEO": "Video",
+        "GENERAL": "General",
+        "COLORS": "Colors",
+        "CROPPER": "Image Cropper"
+      }
+    },
+    "FORMS": {
+      "TEXT": "Forms",
+      "BADGE": "09",
+      "LIST": {
+        "ELEMENTS": "Form Elements",
+        "VALIDATION": "Form Validation",
+        "ADVANCED": "Form Advanced",
+        "EDITOR": "Form Editor",
+        "FILEUPLOAD": "Form File Upload",
+        "REPEATER": "Form Repeater",
+        "WIZARD": "Form Wizard",
+        "MASK": "Form Mask",
+        "LAYOUTS": "Form Layouts"
+      }
+    },
+    "TABLES": {
+      "TEXT": "Tables",
+      "LIST": {
+        "BASIC": "Basic Tables",
+        "ADVANCED": "Advanced Table"
+      }
+    },
+    "CHARTS": {
+      "TEXT": "Charts",
+      "LIST": {
+        "APEX": "Apex Chart",
+        "CHARTJS": "Chartjs Chart",
+        "CHARTIST": "Chartist Chart",
+        "ECHART": "E Chart"
+      }
+    },
+    "ICONS": {
+      "TEXT": "Icons",
+      "LIST": {
+        "BOXICONS": "Boxicons",
+        "MATERIALDESIGN": "Material Design",
+        "DRIPICONS": "Dripicons",
+        "FONTAWESOME": "Font Awesome"
+      }
+    },
+    "MAPS": {
+      "TEXT": "Maps",
+      "LIST": {
+        "GOOGLEMAP": "Google Maps"
+      }
+    },
+    "MULTILEVEL": {
+      "TEXT": "Multi Level",
+      "LIST": {
+        "LEVEL1": {
+          "1": "Level 1.1",
+          "2": "Level 1.2",
+          "LEVEL2": {
+            "1": "Level 2.1",
+            "2": "Level 2.2"
+          }
+        }
+      }
+    }
+  },
+  "MODULARVIEWER":{
+    "COMMON":{
+      "ADD":"Add"
+    },
+    "MENUBAR":{
+      "MENU":{
+        "TEXT": "Menu"
+      },
+      "DASHBOARD":{
+        "TEXT": "Dashboard"
+      },
+      "TRANSACTION_REPORT":{
+        "TEXT": "Transaction Report"
+      }
+    },
+    "FOOTER":{
+      "EEASYCOLLECT":"Fils Connect"
+    },
+    "BREADCRUMBITEMS":{
+      "MYDASHBOARD":"My Dashboard",
+      "TRANSACTIONREPORT":"Transaction Report"
+    },
+    "TRANSACTIONREPORT":{
+      "TRANSACTIONREPORT":"Transaction Report",
+      "LIST": {
+        "CREATEDAT": "Created At",
+        "CAUSENAME": "Cause Name",
+        "LOCATION": "Location",
+        "CHARITYNAME": "Charity Name",
+        "TRANSACTIONTYPE": "Transaction Type",
+        "AMOUNT": "Amount"
+      },
+      "POPUP": {
+        "TRANSACTIONDETAILS": "Transaction Details",
+        "CREATEDDATE": "Created Date",
+        "TIME": "Time",
+        "AMOUNT":"Amount",
+        "LOCATIONEMAIL": "Location Email",
+        "TRANSACTIONID": "Transaction ID",
+        "USERNAME": "User Name",
+        "CAUSENAME": "Cause Name",
+        "CHARITYNAME": "Charity Name",
+        "LOCATION": "Location",
+        "PARTNERFEE":"Partner Fee",
+        "PLATFORMFEE": "Platform Fee",
+        "MDR": "MDR",
+        "EMPLOYEECOMMISSION": "Employee Commission",
+        "MACHINENO.":"Machine No.",
+        "TRANSACTIONTYPE": "Transaction Type"
+      },
+      "FILTER": {
+        "SEARCH": "Search",
+        "FROMDATE": "From Date",
+        "TODATE": "To Date",
+        "CHARITY":"Charity",
+        "CAUSE":"Cause",
+        "LOCATION": "Location",
+        "USER": "User",
+        "TRANSACTIONTYPE": "Transaction Type"
+      },
+      "BUTTONS": {
+        "CLEAR": "Clear",
+        "EXPORT": "Export"
+      }
+    },
+    "DASHBOARD":{
+      "TOTALTRANSACTIONS":"Total Transactions",
+      "TOTALAMOUNTCOLLECTED":"Total Amount Collected",
+      "CASHCOLLECTEDTOTAL":"Cash Collected - Total",
+      "TOTALTRANSACTIONSTODAY":"Total Transactions Today",
+      "AMOUNTCOLLECTEDTODAY":"Amount Collected Today",
+      "CASHCOLLECTEDTODAY":"Cash Collected - Today",
+      "CHARITIES":"Charities",
+      "CAUSES":"Causes",
+      "MYDASHBOARD":"My Dashboard",
+      "COLLECTIONSFORLAST7DAYS":"Collections for last 7 Days",
+      "COLLECTIONAMOUNT":"Collection Amount",
+      "TRANSACTIONSFORLAST7DAYS":"Transactions for last 7 Days",
+      "TRANSACTIONCOUNT":"Transaction Count",
+      "DATE":"Date",
+      "SERIES:":"series",
+      "COLLECTIONSIN":"Collections in",
+      "DENOMINATIONVSCOUNT":"Denomination vs Count",
+      "TOP10CAUSES":"Top 10 Causes",
+      "CAUSENAME":"Cause Name",
+      "COLLECTION":"Collection",
+      "XAXIS": {
+        "JAN": "Jan",
+        "FEB": "Feb",
+        "MAR": "Mar",
+        "APR": "Apr",
+        "MAY": "May",
+        "JUN": "Jun",
+        "JUL": "Jul",
+        "AUG": "Aug",
+        "SEP": "Sep",
+        "OCT": "Oct",
+        "NOV": "Nov",
+        "DEC": "Dec"
+      }
+    }
+  }
+}

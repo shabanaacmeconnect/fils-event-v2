@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+.modal-holder{
+  animation-name: example;
+  animation-duration: 0.3s;
+}
+@keyframes example {
+  0%   {transform: scale(0.5)}
+  100% {transform: scale(1)}
+}
+.apexcharts-toolbar {
+  display: none !important;
+}
+.carousel-item {
+  transition: opacity 0.7s ease !important;
+  position: absolute !important;
+  display: block !important;
+  opacity: 0;
+}
+
+.carousel-item.active {
+  position: relative !important;
+  opacity: 1;
+}
+
+.mm-active{
+  // border-left:8px solid   #6f62e7;
+}
+.swal2-styled.swal2-confirm{
+  background-color:   #6f62e7!important;
+}
+th{
+  padding-right: 25px!important;
+}
+td{
+  vertical-align:middle!important;
+}
+td,th {
+  text-align: center!important;
+}
+td:first-child,th:first-child {
+  text-align: left !important;
+}
+.spinner-grow {
+  width: 1rem !important;
+  height: 1rem !important;
+  -webkit-animation: spinner-grow 1s linear infinite !important;
+  animation: spinner-grow 1s linear infinite !important;
+}
+.bg-not{
+background-color: #f1f1f16e
+}
+.bg-yes{
+background-color:#8f85ef2e !important;
+}
+
+.preview {
+width: 300px!important;
+height: 300px!important;
+}
+@import '@ctrl/ngx-emoji-mart/picker';
+.modal-body td,.modal-body th{
+  padding-top:10px;
+  padding-bottom:10px;
+}

@@ -1,0 +1,181 @@
+<div class="container-fluid">
+
+    <!-- <app-page-title title="Event Space" [breadcrumbItems]="breadCrumbItems"></app-page-title> -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Event Space                       
+                        <span class="float-end ">Carbon Emission : <span class="text-success">{{details.eventSpace_co2_emission}}</span></span>
+                   </h4>
+                   <p class="card-title-desc mb-0">Description</p>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                  
+                    <div class="text-sm-end">
+                        <button type="button" class="btn btn-primary mb-2" *ngIf="details.event_state==0"
+                            (click)="largeModal(largeDataModal)">
+                            <i class="mdi mdi-plus me-1"></i>  New Event Space
+                        </button>
+                    </div>
+                 
+                    <div class="table-responsive" *ngIf="dataList.length>0">
+                        <table class="table table-bordered dt-responsive nowrap no-footer dtr-inline">
+                            <thead>
+                                <tr class="table-light">
+                                    <th>Date</th>
+                                    <th>Event</th>
+                                    <th >Hours</th>
+                                    <th >Size</th>
+                                    <!-- <th sortable="status" class="text-center" (sort)="onSort($event)">Status</th> -->
+                                    <th class="text-center" *ngIf="details.event_state==0">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of dataList ">
+                                    <td>{{data.date |date}}</td>     
+                                    <td>{{data.name}}</td>                                
+                                    <td>{{data.num_hours}}</td>                                
+                                    <td>{{data.approx_size}}</td>                                
+                           
+                                    <!-- <td class=" text-center">
+                                        <div>
+                                            <div class="form-switch mb-2">
+                                                <input type="checkbox" class="form-check-input"
+                                                    (change)="toggleFunction($event,data.id)"
+                                                    [checked]="!data.user_status" [id]="data.id">
+                                                <label class="custom-control-label" [for]="data.id"></label>
+                                            </div>
+                                        </div>
+                                    </td> -->
+                                    <td class="text-center" *ngIf="details.event_state==0">
+                                        <div class="" placement="bottom-end">
+
+                                            <a href="javascript: void(0);" class="me-2"
+                                                (click)="editModal(largeDataModal,data)"><i
+                                                    class="fas fa-pencil-alt text-success me-1"></i>
+                                            </a>
+                                            <a href="javascript: void(0);" (click)="deleteRow(data)"><i
+                                                    class="fas fa-trash-alt text-danger"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- <app-pagination [page]="pageCopy()" *ngIf="dataList.length>0" (newItemEvent)="changePage($event)">
+                    </app-pagination> -->
+                    <div class="table-responsive text-primary" *ngIf="dataList.length==0">
+                        * 0 Results Found.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+</div>
+<ng-template #largeDataModal let-modal>
+    <div class="modal-header">
+        <h3 class="modal-title mt-0">{{title}} Event Space</h3>
+        <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-hidden="true"></button>
+    </div>
+    <div class="modal-body">
+
+        <form (ngSubmit)="typeSubmit()" [formGroup]="typeValidationForm">
+            <div class="form-group mb-3">
+                <label class="fw-bold"> Event Name</label>
+                <input type="text" class="form-control" formControlName="name"
+                    placeholder="Enter Event Name"
+                    [ngClass]="{'is-invalid': typesubmit && f.name.errors}" />
+                <div *ngIf="typesubmit && f.name.errors" class="invalid-feedback">
+                    <span *ngIf="f.name.errors.required">Name is required.</span>
+                    <span
+                        *ngIf="f.name.errors.minLength || f.name.errors.maxLength || f.name.errors.pattern">
+                        Name is invalid.</span>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="fw-bold"> Date</label>
+                <input type="date" class="form-control" formControlName="date"
+                    placeholder=""
+                    [ngClass]="{'is-invalid': typesubmit && f.date.errors}" />
+                <div *ngIf="typesubmit && f.date.errors" class="invalid-feedback">
+                    <span *ngIf="f.date.errors.required">Date is required.</span>
+                    <span
+                        *ngIf="f.date.errors.minLength || f.date.errors.maxLength || f.date.errors.pattern">
+                        Date is invalid.</span>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="fw-bold">Select Country</label>
+                <select class="form-control" formControlName="country_id"
+                    [ngClass]="{'is-invalid': typesubmit && f.country_id.errors}">
+                    <option [ngValue]="null" [disabled]="true">Choose Country</option>
+                    <option [ngValue]=1>United Arab Emirates</option>
+                </select>
+                <div *ngIf="typesubmit && f.country_id.errors" class="invalid-feedback">
+                    <span *ngIf="f.country_id.errors.required">Country is required.</span>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="fw-bold"> Number Of Hours</label>
+                <input type="number" class="form-control" formControlName="num_hours"
+                    placeholder="Enter Number Of Hours"
+                    [ngClass]="{'is-invalid': typesubmit && f.num_hours.errors}" />
+                <div *ngIf="typesubmit && f.num_hours.errors" class="invalid-feedback">
+                    <span *ngIf="f.num_hours.errors.required">Number Of Hours is required.</span>
+                    <span
+                        *ngIf="f.num_hours.errors.minLength || f.num_hours.errors.maxLength || f.num_hours.errors.pattern">
+                        Number Of Hours is invalid.</span>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="fw-bold"> Approximate Size</label>
+                <input type="number" class="form-control" formControlName="approx_size"
+                    placeholder="Enter Approximate size"
+                    [ngClass]="{'is-invalid': typesubmit && f.approx_size.errors}" />
+                <div *ngIf="typesubmit && f.approx_size.errors" class="invalid-feedback">
+                    <span *ngIf="f.approx_size.errors.required">Approximate size is required.</span>
+                    <span
+                        *ngIf="f.approx_size.errors.minLength || f.approx_size.errors.maxLength || f.approx_size.errors.pattern">
+                        Approximate sizeis invalid.</span>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="fw-bold">Unit</label>
+                <select class="form-control" formControlName="unit"
+                    [ngClass]="{'is-invalid': typesubmit && f.unit.errors}">
+                    <option [ngValue]="null" [disabled]="true">Choose Unit</option>
+                    <option [ngValue]=1>m2</option>
+                    <option [ngValue]=2>ft2</option>
+                 
+                </select>
+                <div *ngIf="typesubmit && f.unit.errors" class="invalid-feedback">
+                    <span *ngIf="f.unit.errors.required">Unit is required.</span>
+                </div>
+            </div>
+
+
+            <div class="form-group mb-5 mt-4">
+                <div>
+                    <button type="submit" class="btn btn-primary float-end">
+                        Submit
+                    </button>
+                    <button type="reset" class="btn btn-secondary me-3 float-end">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</ng-template>

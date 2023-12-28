@@ -1,0 +1,62 @@
+<div class="container-fluid" *ngIf="details">
+<div class="row">
+  <app-page-title title="{{details.event_name}}" [breadcrumbItems]="[]" class="col-md-6"></app-page-title>
+  <div class="text-end col-md-6">
+    <button type="button" *ngIf="details.event_state==0" class="btn btn-success mb-2 me-4"(click)="editModal()">
+      <i class="mdi mdi-pen me-1"></i>Edit
+    </button>
+    <button type="button"*ngIf="details.event_state==0" class="btn btn-danger mb-2 me-4" (click)="deleteRow(details)">
+        <i class="mdi mdi-trash-can-outline me-1"></i>Delete
+    </button>
+
+  </div>
+</div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card ">
+                <div class="card-body">
+
+                    <ul ngbNav [activeId]="route.children[0]['routeConfig']['path']" class="nav-pills">
+                      <li ngbNavItem="overview" >
+                        <a ngbNavLink routerLink="overview" >Overview</a>
+                      </li>
+                      <li ngbNavItem="fooddetails" >
+                        <a ngbNavLink routerLink="fooddetails" >Food </a>
+                    </li>
+                  
+                    <li ngbNavItem="eventspace" >
+                        <a ngbNavLink routerLink="eventspace">Event Space</a>
+                    </li>
+                    <li ngbNavItem="travel" >
+                        <a ngbNavLink routerLink="travel">Travel</a>
+                    </li>
+                    <li ngbNavItem="stay" >
+                      <a ngbNavLink routerLink="stay">Stay</a>
+                  </li>
+                    <!-- <li ngbNavItem="powerconsumption" >
+                        <a ngbNavLink routerLink="powerconsumption">Power Consumption</a>
+                    </li> -->
+                    <li ngbNavItem="gifting" >
+                        <a ngbNavLink routerLink="gifting" >Gifting</a>
+                    </li>
+                    <li ngbNavItem="marketing" >
+                      <a ngbNavLink routerLink="marketing" >Marketing</a>
+                  </li>
+                  <li ngbNavItem="clothing" >
+                    <a ngbNavLink routerLink="clothing" >Branded Clothing</a>
+                </li>
+               
+                    
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- and an actual outlet elsewhere -->
+  <div  *ngIf="details">
+    <router-outlet></router-outlet>
+
+  </div>

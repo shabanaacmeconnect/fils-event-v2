@@ -1,0 +1,23 @@
+export const environment = {
+  production: true,
+  // baseurl:"https://devlabapi.filscare.com/admin/",
+  // SOCKET_ENDPOINT: 'https://devlabapi.filscare.com',
+  // vendorurl:'https://devmerchant.filscare.com/',
+  baseurl: "https://dev.filsconnect.com/eventManager/",
+  SOCKET_ENDPOINT: "https://dev.filsconnect.com",
+  vendorurl: "https://devmerchant.filsconnect.com/",
+  //  baseurl:"https://testapi.filscare.com/admin/",
+  //   SOCKET_ENDPOINT: 'https://testapi.filscare.com',
+  //   vendorurl:'https://testmerchant.filscare.com/',
+  defaultauth: "fackbackend",
+  firebaseConfig: {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: "",
+  },
+};

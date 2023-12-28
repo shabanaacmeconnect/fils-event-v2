@@ -1,0 +1,171 @@
+<div class="container-fluid">
+
+    <app-page-title title="Certificates" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group mb-3">
+                  <label>Search</label>
+                  <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="keyword" (keyup)="search()"/>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group mb-3">
+                  <label>From Date</label>
+                  <input type="date" class="form-control" placeholder="From Date" [(ngModel)]="from_date" (change)="datesearch()" />
+                </div> 
+              </div>                 
+              <div class="col-md-2">
+                <div class="form-group mb-3">
+                  <label>To Date</label>
+                  <input type="date" class="form-control" placeholder="To Date" [(ngModel)]="to_date" (change)="datesearch()" />
+                </div>
+              </div>
+             
+              <div class="col-md-1">
+                <div class="form-group mb-3">
+                  <label>Entries</label>
+                  <select type="text" class="form-control" [(ngModel)]="page.size" (change)="pageChange()">
+                    <option value=10>10</option><option value=20>20</option>
+                    <option value=30>30</option><option value=40>40</option>
+                    <option value=50>50</option><option value=100>100</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="col-md-1">
+                <div class="form-group mb-3 col-md-4">
+                  <label style="visibility: hidden;">report</label>
+                  <div  (click)="clearfilter()">
+                    <button type="button" class="btn btn-secondary"><i class="bx bx-revision " ></i></button>                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-8">
+                <div class="text-sm-end">
+                </div>
+              </div>
+              <!-- end col-->
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered dt-responsive nowrap datatables no-footer dtr-inline">
+                <thead>
+                  <tr>
+                    <th sortable="issued_date" (sort)="onSort($event)">Date</th>
+                    <th sortable="issued_to" (sort)="onSort($event)">Issued To</th>
+                    <th sortable="offset_amount" (sort)="onSort($event)">Amount</th>
+                    <th sortable="total_co2_emission" (sort)="onSort($event)">Carbon Emission</th>
+                    <th sortable="type" class="text-center" (sort)="onSort($event)">Type</th>
+                    <th>Certificate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let merchants of merchantsData ">
+                    <td >{{merchants.issued_date |date }}</td>
+                    <td  >{{merchants.issued_to}}</td>
+                    <td  >{{merchants.offset_amount | currency:'AED ':'code':'1.2-3'}}</td>
+                    <td  >{{merchants.total_co2_emission | currency:'AED ':'code':'1.2-3'}}</td>
+                    <td   class="text-center"><span *ngIf="merchants.type==1">Event</span><span *ngIf="merchants.type==2">Merchant</span></td>
+                    <td  ><a [routerLink]="'/account/certificate/'+merchants.id" target="_blank">View</a></td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+           
+            <app-pagination [page]="pageCopy()" (newItemEvent)="changePage($event)"></app-pagination>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+  <ng-template #templateDetail let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Transaction Details</h5>
+      <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-hidden="true"></button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-centered table-striped ">
+                  <tr>
+                    <th >Created Date</th><th style="text-align:left !important">Time</th><th style="text-align:left !important">Amount</th>
+                  </tr>
+                  <tr class="table-light"><td style="text-align:left !important">{{details.issued_date |date}}</td><td style="text-align:left !important">{{details.issued_date |date :'h:mm:ss a'}}</td><td style="text-align:left !important">{{details.offset_amount | currency:'AED ':'code':'1.2-3'}}</td></tr>
+                  <tr>
+                    <th style="text-align:left !important">Impact Partner Payable</th><th style="text-align:left !important">Tech Fee</th><th style="text-align:left !important">Issued To Fee</th>
+                  </tr>
+                  <tr class="table-light"><td style="text-align:left !important">{{details.total_co2_emission  | currency:'AED ':'code':'1.2-3'}}</td><td style="text-align:left !important">{{details.fils_commission | currency:'AED ':'code':'1.2-3'}}</td><td style="text-align:left !important">{{details.vendor_commission | currency:'AED ':'code':'1.2-3'}}</td></tr>
+                  <tr>
+                    <th style="text-align:left !important">Cause Name</th><th style="text-align:left !important">Issued To</th><th  style="text-align:left !important">Impact Partner Name</th>
+                  </tr>
+                  <tr class="table-light"><td style="text-align:left !important">{{details.cause_name}}</td><td style="text-align:left !important">{{details.issued_to}}</td><td style="text-align:left !important">{{details.charity_name}}</td>
+                    <tr><th style="text-align:left !important">Transaction Type</th><th  style="text-align:left !important">Channel</th><th style="text-align:left !important">Transaction ID</th></tr>
+                    <tr  class="table-light">
+                      <td style="text-align:left !important">
+                        <span *ngIf="details.type==1">Donation</span><span *ngIf="details.type==2">Round Up</span><span *ngIf="details.type==3">Fixed Value</span><span *ngIf="details.type==4">Percentage Donation</span><span *ngIf="details.type==5">Carbon Offset</span>
+                      </td>
+                      <td style="text-align:left !important">
+                        <span *ngIf="details.channel_id==1">In Store</span>
+                        <span *ngIf="details.channel_id==2">Online</span>
+                        <span *ngIf="details.channel_id==3">QR</span>
+                        <span *ngIf="details.channel_id==4">Ecom</span>
+                        <span *ngIf="details.channel_id==5">POS</span>
+                        <span *ngIf="details.channel_id==6">In App</span>
+                        <span *ngIf="details.channel_id==7">Website</span>
+                        <span *ngIf="details.channel_id==8">Cash</span>
+                        <span *ngIf="details.channel_id==9">Tap Station</span>
+                      </td>
+                      <td style="text-align:left !important">{{details.transaction_id}}</td>
+                      </tr>
+                      <tr><th  style="text-align:left !important">VAT Value</th>
+                        <th  style="text-align:left !important">Status</th>
+                        <th style="text-align:left !important">Cause Category Name</th>
+                      </tr>
+
+                      <tr class="table-light">
+                        <td style="text-align:left !important">{{details.vat |currency:'AED ':'code':'1.2-3'}}</td>
+                    <td style="text-align:left !important"><span class="badge bg-primary font-size-12" *ngIf="details.status==0">
+                     Pending
+                    </span>
+                    <span class="badge bg-success font-size-12" *ngIf="details.status==1">
+                      Success
+                     </span>
+                     <span class="badge bg-danger font-size-12" *ngIf="details.status==2">
+                      Failed
+                     </span>
+                     </td>
+                     <td style="text-align:left !important">{{details.cause_category_name}}</td>
+                    </tr>
+                    <tr><th  style="text-align:left !important">SDG Name</th>
+                      <th  style="text-align:left !important"></th>
+                      <th style="text-align:left !important"></th>
+                    </tr>
+                    <tr class="table-light">
+                      <td style="text-align:left !important">{{details.sdg_name}}</td>
+                      <td style="text-align:left !important"></td>
+                      <td style="text-align:left !important"></td>
+                    </tr>
+                    
+              </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+       
+      </div>
+    </div>
+  </ng-template>
+  

@@ -1,0 +1,381 @@
+<div class="container-fluid">
+
+    <!-- <app-page-title title="Promotional Materials Details" [breadcrumbItems]="breadCrumbItems"></app-page-title> -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form (ngSubmit)="typeSubmit()" [formGroup]="typeValidationForm" >
+                <div class="card">
+                    <div class="card-body">
+                        <div *ngIf="path=='gifting'" >
+                            <h4 class="card-title">Gifts and miscellaneous
+                                <span class="float-end">Carbon Emission : <span class="text-success">{{details.gifting_co2_emission}}</span></span>
+
+                            </h4>
+                            <p class="card-title-desc mb-0">Description</p>
+                        </div>
+                        <div *ngIf="path=='marketing'" >
+                            <h4 class="card-title">Marketing
+                                <span class="float-end">Carbon Emission : <span class="text-success">{{details.marketing_co2_emission}}</span></span>
+
+                            </h4>
+                            <p class="card-title-desc mb-0">Description</p>
+                        </div>
+                        <div *ngIf="path=='clothing'" >
+                            <h4 class="card-title">Branded clothing
+                                <span class="float-end">Carbon Emission : <span class="text-success">{{details.clothing_co2_emission}}</span></span>
+                            </h4>
+                            <p class="card-title-desc mb-0">Please enter number of items and equivalent weight</p>
+                        </div>
+                       
+                    </div>
+                </div>
+            <div class="card" *ngIf="path=='gifting'">
+                <div class="card-body">
+                   
+                        <div class="row">
+                            <span class="col-md-2"></span>
+                            <label class="fw-bold col-md-5"> Item Type </label>
+                            <label class="fw-bold col-md-5"> Total Weight (kgs) </label>
+
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">Clothing</label>
+                            <div class="form-group mb-2 col-md-5">
+                                <ng-select #select formControlName="clothing_item_type" [items]="types" bindLabel="name"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                    bindValue="id"></ng-select>
+                                <div *ngIf="typesubmit && f.clothing_item_type.errors" class="invalid-feedback">
+                                    <span *ngIf="f.clothing_item_type.errors.required"> Clothing Item Type is
+                                        required.</span>
+                                </div>
+                            </div>
+    
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="total_clothing_weight"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                    [ngClass]="{'is-invalid': typesubmit && f.total_clothing_weight.errors}" />
+                                <div *ngIf="typesubmit && f.total_clothing_weight.errors" class="invalid-feedback">
+                                    <span *ngIf="f.total_clothing_weight.errors.required"> Clothing Total weight is
+                                        required.</span>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">Plastic</label>
+                            <div class="form-group mb-2 col-md-5">
+                                <ng-select #select formControlName="plastic_item_type" [items]="typesplastic" bindLabel="name"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                bindValue="id"></ng-select>
+                                <div *ngIf="typesubmit && f.plastic_item_type.errors" class="invalid-feedback">
+                                    <span *ngIf="f.plastic_item_type.errors.required"> Plastic Item Type is required.</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="total_plastic_weight"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                    [ngClass]="{'is-invalid': typesubmit && f.total_plastic_weight.errors}" />
+                                <div *ngIf="typesubmit && f.total_plastic_weight.errors" class="invalid-feedback">
+                                    <span *ngIf="f.total_plastic_weight.errors.required"> Plastic Total weight is
+                                        required.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">Paper</label>
+                            <div class="form-group mb-2 col-md-5">
+                                <ng-select #select formControlName="paper_item_type" [items]="typespaper" bindLabel="name"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                    bindValue="id"></ng-select>
+                                <div *ngIf="typesubmit && f.paper_item_type.errors" class="invalid-feedback">
+                                    <span *ngIf="f.paper_item_type.errors.required">Paper Item Type is
+                                        required.</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="total_paper_weight"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                    [ngClass]="{'is-invalid': typesubmit && f.total_paper_weight.errors}" />
+                                <div *ngIf="typesubmit && f.total_paper_weight.errors" class="invalid-feedback">
+                                    <span *ngIf="f.total_paper_weight.errors.required"> Paper Total weight is
+                                        required.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">Wood</label>
+                            <div class="form-group mb-2 col-md-5">
+                                <ng-select #select formControlName="wood_item_type" [items]="typeswood" bindLabel="name"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                    bindValue="id"></ng-select>
+                                <div *ngIf="typesubmit && f.wood_item_type.errors" class="invalid-feedback">
+                                    <span *ngIf="f.wood_item_type.errors.required">Wood Item Type is
+                                        required.</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="total_wood_weight"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                    [ngClass]="{'is-invalid': typesubmit && f.total_wood_weight.errors}" />
+                                <div *ngIf="typesubmit && f.total_wood_weight.errors" class="invalid-feedback">
+                                    <span *ngIf="f.total_wood_weight.errors.required"> Wood Total weight is required.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-2 col-md-12 row mb-0 mt-3" *ngIf="details.event_state==0">
+                            <div>
+                                <div>
+                                   
+                                    <button type="submit" class="btn btn-primary  float-end me-1">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" *ngIf="path=='marketing'">
+                <div class="card-body">
+                 
+                        <div class="row">
+                            <span class="col-md-2"></span>
+                            <label class="fw-bold col-md-5"> Describe Communication </label>
+                            <label class="fw-bold col-md-5"> Quantity </label>
+
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">Paper </label>
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="text" class="form-control" formControlName="mkt_paper_details"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                [ngClass]="{'is-invalid': typesubmit && f.mkt_paper_details.errors}" />
+                            <div *ngIf="typesubmit && f.mkt_paper_details.errors" class="invalid-feedback">
+                                <span *ngIf="f.mkt_paper_details.errors.required">Marketing Paper Describe is
+                                    required.</span>
+                            </div>
+                            </div>
+    
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control w-80" formControlName="mkt_paper_qty"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                [ngClass]="{'is-invalid': typesubmit && f.mkt_paper_qty.errors}" />
+                                <div class="text-muted font-size-10">*in kgs</div>
+                            <div *ngIf="typesubmit && f.mkt_paper_qty.errors" class="invalid-feedback">
+                                <span *ngIf="f.mkt_paper_qty.errors.required"> Marketing Paper quantity is
+                                    required.</span>
+                            </div>
+                            </div>
+                        </div>
+                       
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">Cardboard</label>
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="text" class="form-control" formControlName="mkt_cardboard_details"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                [ngClass]="{'is-invalid': typesubmit && f.mkt_cardboard_details.errors}" />
+                            <div *ngIf="typesubmit && f.mkt_cardboard_details.errors" class="invalid-feedback">
+                                <span *ngIf="f.mkt_cardboard_details.errors.required">Marketing Paper Describe is
+                                    required.</span>
+                            </div>
+                            </div>
+
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="mkt_cardboard_qty"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                [ngClass]="{'is-invalid': typesubmit && f.mkt_cardboard_qty.errors}" />
+                                <div class="text-muted font-size-10">*in kgs</div>
+
+                            <div *ngIf="typesubmit && f.mkt_cardboard_qty.errors" class="invalid-feedback">
+                                <span *ngIf="f.mkt_cardboard_qty.errors.required"> Marketing cardboard quantity is
+                                    required.</span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">Paper billboard</label>
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="text" class="form-control" formControlName="mkt_paper_billboard"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                [ngClass]="{'is-invalid': typesubmit && f.mkt_paper_billboard.errors}" />
+                               
+                            <div *ngIf="typesubmit && f.mkt_paper_billboard.errors" class="invalid-feedback">
+                                <span *ngIf="f.mkt_paper_billboard.errors.required">Marketing Paper Billboard Describe
+                                    is
+                                    required.</span>
+                            </div>
+                            </div>
+
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="mkt_paper_billboard_qty"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                [ngClass]="{'is-invalid': typesubmit && f.mkt_paper_billboard_qty.errors}" />
+                                <div class="text-muted font-size-10">*in  No. of billboard</div>
+                                <div *ngIf="typesubmit && f.mkt_paper_billboard_qty.errors" class="invalid-feedback">
+                                <span *ngIf="f.mkt_paper_billboard_qty.errors.required"> Marketing Paper Billboard
+                                    quantity is required.</span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-2 col-md-12 row mb-0 mt-3" *ngIf="details.event_state==0">
+                            <div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary  float-end me-1">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                      
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" *ngIf="path=='clothing'" >
+                <div class="card-body">
+                        <div class="row">
+                            <span class="col-md-2"></span>
+                            <label class="fw-bold col-md-5"> Quantity </label>
+                            <label class="fw-bold col-md-5"> Equivalent Weight (kgs)</label>
+
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">T-Shirts</label>
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control " formControlName="clothing_tshirt_count"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}"  (keyup)="calculateweight('t-shirt')"
+                                [ngClass]="{'is-invalid': typesubmit && f.clothing_tshirt_count.errors}" />
+                            <div *ngIf="typesubmit && f.clothing_tshirt_count.errors" class="invalid-feedback">
+                                <span *ngIf="f.clothing_tshirt_count.errors.required"> Clothing Tshirt Count is
+                                    required.</span>
+                            </div>
+                            </div>
+    
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="clothing_tshirt_weight" style="pointer-events:none"
+                                [ngClass]="{'is-invalid': typesubmit && f.clothing_tshirt_weight.errors}" />
+                            <div *ngIf="typesubmit && f.clothing_tshirt_weight.errors" class="invalid-feedback">
+                                <span *ngIf="f.clothing_tshirt_weight.errors.required"> Marketing Paper quantity is
+                                    required.</span>
+                            </div>
+                            </div>
+                        </div>
+                      
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">Shirts</label>
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="clothing_shirt_count"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}"  (keyup)="calculateweight('shirt')" 
+                                [ngClass]="{'is-invalid': typesubmit && f.clothing_shirt_count.errors}" />
+                            <div *ngIf="typesubmit && f.clothing_shirt_count.errors" class="invalid-feedback">
+                                <span *ngIf="f.clothing_shirt_count.errors.required"> Clothing Shirt Count is
+                                    required.</span>
+                            </div>
+                            </div>
+    
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="clothing_shirt_weight"style="pointer-events:none"
+                                [ngClass]="{'is-invalid': typesubmit && f.clothing_shirt_weight.errors}" />
+                            <div *ngIf="typesubmit && f.clothing_shirt_weight.errors" class="invalid-feedback">
+                                <span *ngIf="f.clothing_shirt_weight.errors.required"> Marketing Paper quantity is
+                                    required.</span>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">Jacket</label>
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="clothing_jacket_count"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" (keyup)="calculateweight('jacket')"
+                                [ngClass]="{'is-invalid': typesubmit && f.clothing_jacket_count.errors}" />
+                            <div *ngIf="typesubmit && f.clothing_jacket_count.errors" class="invalid-feedback">
+                                <span *ngIf="f.clothing_jacket_count.errors.required"> Clothing Jacket Count is
+                                    required.</span>
+                            </div>
+                            </div>
+    
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="clothing_jacket_weight"style="pointer-events:none" 
+                                [ngClass]="{'is-invalid': typesubmit && f.clothing_jacket_weight.errors}" />
+                            <div *ngIf="typesubmit && f.clothing_jacket_weight.errors" class="invalid-feedback">
+                                <span *ngIf="f.clothing_jacket_weight.errors.required"> Marketing Paper quantity is
+                                    required.</span>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">Jumper</label>
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="clothing_jumper_count"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" (keyup)="calculateweight('jumber')"
+                                [ngClass]="{'is-invalid': typesubmit && f.clothing_jumper_count.errors}" />
+                            <div *ngIf="typesubmit && f.clothing_jumper_count.errors" class="invalid-feedback">
+                                <span *ngIf="f.clothing_jumper_count.errors.required"> Clothing Jumper Count is
+                                    required.</span>
+                            </div>
+                            </div>
+    
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="clothing_jumper_weight" style="pointer-events:none" 
+                                [ngClass]="{'is-invalid': typesubmit && f.clothing_jumper_weight.errors}" />
+                            <div *ngIf="typesubmit && f.clothing_jumper_weight.errors" class="invalid-feedback">
+                                <span *ngIf="f.clothing_jumper_weight.errors.required"> Marketing Paper quantity is
+                                    required.</span>
+                            </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">Trouser</label>
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="clothing_trouser_count"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" (keyup)="calculateweight('trouser')"
+                                [ngClass]="{'is-invalid': typesubmit && f.clothing_trouser_count.errors}" />
+                            <div *ngIf="typesubmit && f.clothing_trouser_count.errors" class="invalid-feedback">
+                                <span *ngIf="f.clothing_trouser_count.errors.required"> Clothing Trouser Count is
+                                    required.</span>
+                            </div>
+                            </div>
+    
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="clothing_trouser_weight" style="pointer-events:none" 
+                                [ngClass]="{'is-invalid': typesubmit && f.clothing_trouser_weight.errors}" />
+                            <div *ngIf="typesubmit && f.clothing_trouser_weight.errors" class="invalid-feedback">
+                                <span *ngIf="f.clothing_trouser_weight.errors.required"> Marketing Paper quantity is
+                                    required.</span>
+                            </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12 row">
+                            <label class="col-md-2 col-form-label fw-bold">Shoe</label>
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="clothing_shoe_count"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}"  (keyup)="calculateweight('shoe')"
+                                [ngClass]="{'is-invalid': typesubmit && f.clothing_shoe_count.errors}" />
+                            <div *ngIf="typesubmit && f.clothing_shoe_count.errors" class="invalid-feedback">
+                                <span *ngIf="f.clothing_shoe_count.errors.required"> Clothing Shoe Count is
+                                    required.</span>
+                            </div>
+                            </div>
+    
+                            <div class="form-group mb-2 col-md-5">
+                                <input type="number" class="form-control" formControlName="clothing_shoe_weight" style="pointer-events:none"
+                                [ngClass]="{'is-invalid': typesubmit && f.clothing_shoe_weight.errors}" />
+                            <div *ngIf="typesubmit && f.clothing_shoe_weight.errors" class="invalid-feedback">
+                                <span *ngIf="f.clothing_shoe_weight.errors.required"> Marketing Paper quantity is
+                                    required.</span>
+                            </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group mb-2 col-md-12 row mb-0 mt-3" *ngIf="details.event_state==0">
+                            <div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary  float-end me-1">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>

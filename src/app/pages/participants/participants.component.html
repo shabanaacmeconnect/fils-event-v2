@@ -1,0 +1,196 @@
+<div class="container-fluid">
+
+    <!-- <app-page-title title="participants" [breadcrumbItems]="breadCrumbItems"></app-page-title> -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Travel Details         
+                        <span class="float-end ">Carbon Emission : <span class="text-success">{{details.travel_co2_emission}}</span></span>
+                   </h4>
+                   <p class="card-title-desc mb-0">Description</p>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                  
+                    <form (ngSubmit)="typeSubmit()" [formGroup]="typeValidationForm" class="row">
+                       
+                        <div class="form-group mb-2 col-md-6">
+                            <label class="fw-bold">Average one way distance between hotel and event </label>
+                            <input type="number" [ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" class="form-control" formControlName="avg_dist_hotel_event_kms"
+                                [ngClass]="{'is-invalid': typesubmit && f.avg_dist_hotel_event_kms.errors}" />
+                            <div *ngIf="typesubmit && f.avg_dist_hotel_event_kms.errors" class="invalid-feedback">
+                                <span *ngIf="f.avg_dist_hotel_event_kms.errors.required"> Average one way distance
+                                    between hotel and event is
+                                    required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group mb-2 col-md-6">
+                            <label class="fw-bold"> Typical mode of transport taken Choose Mode</label>
+                            <select class="form-control" [ngStyle]="details.event_state==0?null:{'pointer-events':'none'}"  formControlName="avg_dist_hotel_event_mode"
+                                [ngClass]="{'is-invalid': typesubmit && f.avg_dist_hotel_event_mode.errors}">
+                                <option [ngValue]="null" [disabled]="true">Choose Mode</option>
+                                <option [ngValue]=1>Car</option>
+                                <option [ngValue]=2>Flight</option>
+                                <option [ngValue]=3>Taxi</option>
+                            </select>
+                            <div *ngIf="typesubmit && f.avg_dist_hotel_event_mode.errors" class="invalid-feedback">
+                                <span *ngIf="f.avg_dist_hotel_event_mode.errors.required">Choose Mode is
+                                    required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group mb-2 col-md-6">
+                            <label class="fw-bold">Average number of staff supporting event each day </label>
+                            <input type="number" class="form-control"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                formControlName="avg_num_Staff_event_each_day_count"
+                                [ngClass]="{'is-invalid': typesubmit && f.avg_num_Staff_event_each_day_count.errors}" />
+                            <div *ngIf="typesubmit && f.avg_num_Staff_event_each_day_count.errors"
+                                class="invalid-feedback">
+                                <span *ngIf="f.avg_num_Staff_event_each_day_count.errors.required"> Average number of
+                                    staff supporting event each day is
+                                    required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group mb-2 col-md-6">
+                            <label class="fw-bold">Average one way distance travelled to support event</label>
+                            <input type="number" class="form-control" formControlName="avg_num_Staff_event_each_day_kms"[ngStyle]="details.event_state==0?null:{'pointer-events':'none'}" 
+                                [ngClass]="{'is-invalid': typesubmit && f.avg_num_Staff_event_each_day_kms.errors}" />
+                            <div *ngIf="typesubmit && f.avg_num_Staff_event_each_day_kms.errors"
+                                class="invalid-feedback">
+                                <span *ngIf="f.avg_num_Staff_event_each_day_kms.errors.required"> Average one way
+                                    distance travelled to support event is
+                                    required.</span>
+                            </div>
+                        </div>
+                       
+    
+                        <div class="form-group mb-2 col-md-12 mb-0 mt-3" *ngIf="details.event_state==0">
+                            <div>
+                                <div>
+                                    <button type="reset" class="btn btn-secondary float-end">
+                                        Reset
+                                    </button>
+                                    <button type="submit" class="btn btn-primary  float-end me-1">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    
+        </div>
+    
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label style="visibility: hidden;">report</label>
+                                <div>
+                                    <div class="text-sm-end">
+                                        <button type="button" class="btn btn-primary mb-2"*ngIf="details.event_state==0"
+                                            (click)="largeModal(largeDataModal)">
+                                            <i class="mdi mdi-plus me-1"></i> New Travel Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive" *ngIf="dataList.length>0">
+                        <table class="table table-bordered dt-responsive nowrap  no-footer dtr-inline">
+                            <thead>
+                                <tr class="table-light">
+                                    <th >Mode</th>
+                                    <th >Participant Count</th>
+                                    <th >KMs Count</th>
+                                    <th class="text-center" *ngIf="details.event_state==0">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of dataList ">
+                                  
+                                    <td> {{data.mode==1?'Air - Domestic':data.mode==2?'Air - Short Haul International':data.mode==3?'Air - Long Haul Internation':data.mode==4?'Taxi':data.mode==5?'Coach':data.mode==6?'Bus':'Train'}}</td>
+                                    <td>{{data.participant_count}}</td>
+                                    <td>{{data.kms_count}}</td>
+                                    <td class="text-center" *ngIf="details.event_state==0"> 
+                                        <div class="" placement="bottom-end">
+                                            <a href="javascript: void(0);" class="me-2"  (click)="editModal(largeDataModal,data)"><i class="fas fa-pencil-alt text-success me-1"></i>
+                                            </a>
+                                            <a href="javascript: void(0);" (click)="deleteRow(data)"><i  class="fas fa-trash-alt text-danger"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+<!-- 
+                    <app-pagination [page]="pageCopy()" *ngIf="dataList.length>0" (newItemEvent)="changePage($event)">
+                    </app-pagination> -->
+                    <div class="table-responsive text-primary" *ngIf="dataList.length==0">
+                        * 0 Results Found.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+</div>
+
+<ng-template #largeDataModal let-modal>
+    <div class="modal-header">
+        <h3 class="modal-title mt-0">{{title}} Details</h3>
+        <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-hidden="true"></button>
+    </div>
+    <div class="modal-body">
+
+        <form (ngSubmit)="typeSubmit1()" [formGroup]="typeValidationForm1">
+            <div class="form-group mb-3">
+                <label class="fw-bold"> Participant Count</label>
+                <input type="number" class="form-control" formControlName="participant_count" />
+                <div *ngIf="typesubmit && f1.participant_count.errors" class="invalid-feedback">
+                    <span *ngIf="f1.participant_count.errors.required">Participant Count is required.</span>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="fw-bold"> Kms Count</label>
+                <input type="number" class="form-control" formControlName="kms_count" />
+                <div *ngIf="typesubmit && f1.kms_count.errors" class="invalid-feedback">
+                    <span *ngIf="f1.kms_count.errors.required">Kms Count is required.</span>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="fw-bold">Mode</label>
+                <ng-select #select formControlName="mode"  [items]="Mode" bindLabel="name" bindValue="id" 
+                ></ng-select>
+                <div *ngIf="typesubmit && f1.mode.errors" class="invalid-feedback">
+                    <span *ngIf="f1.mode.errors.required">Mode is required.</span>
+                </div>
+            </div>
+
+            
+            <div class="form-group mb-5 mt-4">
+                <div>
+                    <button type="submit" class="btn btn-primary float-end">
+                        Submit
+                    </button>
+                    <button type="reset" class="btn btn-secondary me-3 float-end">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</ng-template>

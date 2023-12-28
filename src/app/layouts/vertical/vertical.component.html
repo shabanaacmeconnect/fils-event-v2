@@ -1,0 +1,214 @@
+<div id="layout-wrapper">
+
+  <app-topbar (settingsButtonClicked)="onSettingsButtonClicked()" (mobileMenuButtonClicked)="onToggleMobileMenu()">
+  </app-topbar>
+
+  <app-sidebar [isCondensed]="isCondensed"></app-sidebar>
+
+  <div class="main-content">
+    <div class="page-content">
+    <div class=" container-fluid">
+      <div class="card mb-4">
+        <div class="">
+          <!-- <div class="dropdown d-inline-block float-end" ngbDropdown>
+            <button type="button" class="btn header-item noti-icon" id="page-header-notifications-dropdown"
+              ngbDropdownToggle>
+              <i class="bx bx-bell bx-tada"></i>
+              <span class="badge bg-danger badge-pill">3</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+              aria-labelledby="page-header-notifications-dropdown" ngbDropdownMenu>
+              <div class="p-3">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h6 class="m-0">{{ 'HEADER.NOTIFICATIONS.TITLE' | translate}} </h6>
+                  </div>
+                  <div class="col-auto">
+                    <a href="javascript: void(0);" class="small">{{ 'HEADER.NOTIFICATIONS.VIEW_ALL' | translate}}</a>
+                  </div>
+                </div>
+              </div>
+              <perfect-scrollbar style="position: relative; height: 230px;" [config]="configData">
+                <a href="" class="text-reset notification-item">
+                  <div class="media">
+                    <div class="avatar-xs me-3">
+                      <span class="avatar-title bg-primary rounded-circle font-size-16">
+                        <i class="bx bx-cart"></i>
+                      </span>
+                    </div>
+                    <div class="media-body">
+                      <h6 class="mt-0 mb-1">{{ 'HEADER.NOTIFICATIONS.FIRST.TITLE' | translate}}</h6>
+                      <div class="font-size-12 text-muted">
+                        <p class="mb-1">{{ 'HEADER.NOTIFICATIONS.FIRST.TEXT' | translate}}</p>
+                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i>
+                          {{ 'HEADER.NOTIFICATIONS.FIRST.TIME' | translate}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <a href="" class="text-reset notification-item">
+                  <div class="media">
+                    <img src="assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                    <div class="media-body">
+                      <h6 class="mt-0 mb-1">{{ 'HEADER.NOTIFICATIONS.SECOND.TITLE' | translate}}</h6>
+                      <div class="font-size-12 text-muted">
+                        <p class="mb-1">{{ 'HEADER.NOTIFICATIONS.SECOND.TEXT' | translate}}</p>
+                        <p class="mb-0"><i
+                            class="mdi mdi-clock-outline"></i>{{ 'HEADER.NOTIFICATIONS.SECOND.TIME' | translate}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <a href="" class="text-reset notification-item">
+                  <div class="media">
+                    <div class="avatar-xs me-3">
+                      <span class="avatar-title bg-success rounded-circle font-size-16">
+                        <i class="bx bx-badge-check"></i>
+                      </span>
+                    </div>
+                    <div class="media-body">
+                      <h6 class="mt-0 mb-1">{{ 'HEADER.NOTIFICATIONS.THIRD.TITLE' | translate}}</h6>
+                      <div class="font-size-12 text-muted">
+                        <p class="mb-1">{{ 'HEADER.NOTIFICATIONS.THIRD.TEXT' | translate}}</p>
+                        <p class="mb-0"><i
+                            class="mdi mdi-clock-outline"></i>{{ 'HEADER.NOTIFICATIONS.THIRD.TIME' | translate}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <a href="" class="text-reset notification-item">
+                  <div class="media">
+                    <img src="assets/images/users/avatar-4.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                    <div class="media-body">
+                      <h6 class="mt-0 mb-1">{{ 'HEADER.NOTIFICATIONS.FOUR.TITLE' | translate}}</h6>
+                      <div class="font-size-12 text-muted">
+                        <p class="mb-1">{{ 'HEADER.NOTIFICATIONS.FOUR.TEXT' | translate}}</p>
+                        <p class="mb-0"><i
+                            class="mdi mdi-clock-outline"></i>{{ 'HEADER.NOTIFICATIONS.FOUR.TIME' | translate}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </perfect-scrollbar>
+              <div class="p-2 border-top">
+                <a class="btn btn-sm btn-light btn-block text-center" href="javascript:void(0)">
+                  <i class="mdi mdi-arrow-down-circle me-1"></i> {{ 'HEADER.NOTIFICATIONS.LOAD_MORE' | translate}}
+                </a>
+              </div>
+            </div>
+          </div> -->
+          
+          <div class="dropdown d-inline-block float-end" ngbDropdown>
+            <button type="button" class="btn" ngbDropdownToggle id="page-header-user-dropdown">
+              <!-- <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" alt="Header Avatar"> -->
+              <span class="d-xl-inline-block ms-1 me-2">Welcome {{currentUser.name}}</span>
+              <img [src]="userlogo" alt="Header Avatar" class="rounded-circle header-profile-user me-2" *ngIf="userlogo" style="object-fit: contain;">
+              <img src="assets/images/user.png" alt="Header Avatar" class="rounded-circle header-profile-user me-2" *ngIf="!userlogo">
+              <i class="mdi mdi-chevron-down d-xl-inline-block"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+              
+              <!-- <a class="dropdown-item" href="javascript: void(0);"><i class="bx bx-user font-size-16 align-middle me-1"></i>
+                {{ 'HEADER.LOGIN.PROFILE' | translate}}</a>
+              <a class="dropdown-item" href="javascript: void(0);"><i
+                  class="bx bx-wallet font-size-16 align-middle me-1"></i>{{ 'HEADER.LOGIN.MY_WALLET' | translate}}</a>
+              --> <a class="dropdown-item d-block" href="javascript: void(0);"  (click)="changePassword(largeDataModal)"><i
+                class="bx bx-wrench font-size-16 align-middle me-1"></i>Change Password </a>
+                <!--<a class="dropdown-item" href="javascript: void(0);"><i
+                  class="bx bx-lock-open font-size-16 align-middle me-1"></i>
+                {{ 'HEADER.LOGIN.LOCK_SCREEN' | translate}}</a> -->
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item text-danger" href="javascript: void(0);" (click)="logout()" ><i
+                  class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
+                {{ 'HEADER.LOGIN.LOGOUT' | translate}}</a>
+            </div>
+          </div>
+          <!-- <button type="button" routerLink="/notifications" class="btn header-item noti-icon float-end" style="margin-top:13px" id="page-header-notifications-dropdown">
+            <i class="bx bx-bell bx-tada"></i>
+            <span class="badge bg-danger badge-pill" *ngIf="count>0">{{count}}</span>
+          </button>
+          <div class="dropdown d-inline-block float-end" style="margin-top:21px">
+            <span class="d-xl-inline-block ms-1 me-2">Balance ( <strong [ngClass]="merchantsData.balance>0?'text-success':'text-danger'">{{showBalance(merchantsData.balance)| currency:'AED ':'code':'1.2-3'}}</strong> )</span>
+          </div> -->
+        
+        </div>
+      </div>
+        
+    </div>
+      
+      
+      <!-- content -->
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- footer -->
+    <app-footer></app-footer>
+  </div>
+</div>
+
+<!-- <app-endsidebar></app-endsidebar> -->
+
+<ng-template #largeDataModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Change Password</h5>
+    <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-hidden="true"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+         
+            <form (ngSubmit)="typeSubmit()" [formGroup]="typeValidationForm">
+             
+              <div class="form-group mb-3">
+                <label>Current Password</label>
+                <input type="text" class="form-control" formControlName="current_password" placeholder="Enter current password"
+                  [ngClass]="{'is-invalid': typesubmit && type.current_password.errors}"  />
+                <div *ngIf="typesubmit && type.current_password.errors" class="invalid-feedback">
+                  <span *ngIf="type.current_password.errors.required">Current Password is required.</span>
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label>New Password</label>
+                <div>
+                  <input type="password" class="form-control"autocomplete="new-password" maxlength="50" formControlName="new_password"
+                    [ngClass]="{'is-invalid': typesubmit && type.new_password.errors}"  placeholder="Enter new password"/>
+                  <div *ngIf="typesubmit && type.new_password.errors" class="invalid-feedback">
+                    <span *ngIf="type.new_password.errors.required">Password is required.</span>
+                    <span *ngIf="type.new_password.errors.minlength">Password must be at least 10
+                      characters.</span>
+                      <span *ngIf="type.new_password.errors.pattern"> Password must contain alphabetics,numbers and special charactes !</span>
+
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <input type="password" class="form-control" placeholder="Re-Type Password" formControlName="confirm_password"
+                    [ngClass]="{'is-invalid': typesubmit && type.confirm_password.errors}" />
+                  <div *ngIf="typesubmit && type.confirm_password.errors" class="invalid-feedback">
+                    <span *ngIf="type.confirm_password.errors.required">This value is required.</span>
+                    <span *ngIf="type.confirm_password.errors.mustMatch">This value should be the same.</span>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="form-group mb-3 mb-0">
+                <div>
+                  <button type="submit" class="btn btn-primary float-end">
+                    Submit
+                  </button>
+                  <button type="reset" class="btn btn-secondary me-3 float-end">
+                    Reset
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+     
+    </div>
+  </div>
+</ng-template>

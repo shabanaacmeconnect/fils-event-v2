@@ -1,0 +1,140 @@
+<div class="container-fluid">
+
+    <!-- <app-page-title title="Food Consumption" [breadcrumbItems]="breadCrumbItems"></app-page-title> -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-group col-md-12">
+                                <label style="visibility: hidden;">report</label>
+                                <div>
+                                    <div class="text-sm-end">
+                                        <button type="button" class="btn btn-primary mb-2"  *ngIf="details.event_state==0"
+                                            (click)="largeModal(largeDataModal)">
+                                            <i class="mdi mdi-plus me-1"></i> New Food Consumption
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive" *ngIf="dataList.length>0">
+                        <table class="table table-bordered dt-responsive nowrap  no-footer dtr-inline">
+                            <thead>
+                                <tr  class="table-light">
+                                    <th>Date</th>
+                                    <th>Food Type</th>
+                                    <th >Food Option</th>
+                                    <th sortable="num_of_meals" (sort)="onSort($event)">Number Of Meals</th>
+                                    <th class="text-center"  *ngIf="details.event_state==0">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of dataList ">
+                                    <td>{{data.date | date}} </td>
+                                    <!-- <td> <span *ngIf="data.food_type==1">Breakfast</span> <span *ngIf="data.food_type==2">Lunch</span><span *ngIf="data.food_type==3">Dinner</span></td> -->
+                                    <td> {{data.food_type==1?'Breakfast':data.food_type==2?'Lunch':'Dinner'}}</td>
+                                    <td> {{data.food_option==1?'Veg':data.food_option==2?'Meat':data.food_option==3?'Fish':'Poultry'}}</td>
+                                    <td>{{data.num_of_meals}}</td>
+                            
+                                    <td class="text-center"  *ngIf="details.event_state==0">
+                                        <div class="" placement="bottom-end">
+
+                                            <a href="javascript: void(0);" class="me-2"
+                                                (click)="editModal(largeDataModal,data)"><i
+                                                    class="fas fa-pencil-alt text-success me-1"></i>
+                                            </a>
+                                            <a href="javascript: void(0);" (click)="deleteRow(data)"><i
+                                                    class="fas fa-trash-alt text-danger"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- <app-pagination [page]="pageCopy()" *ngIf="dataList.length>0" (newItemEvent)="changePage($event)">
+                    </app-pagination> -->
+                    <div class="table-responsive text-primary" *ngIf="dataList.length==0">
+                        * 0 Results Found.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+</div>
+
+<ng-template #largeDataModal let-modal>
+    <div class="modal-header">
+        <h3 class="modal-title mt-0">{{title}} Food Consumption</h3>
+        <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')" aria-hidden="true"></button>
+    </div>
+    <div class="modal-body">
+
+        <form (ngSubmit)="typeSubmit()" [formGroup]="typeValidationForm">
+
+            <div class="form-group mb-3">
+                <label class="fw-bold">Food Type</label>
+                <select class="form-control" formControlName="food_type"
+                >
+                <option [ngValue]="null" [disabled]="true">Choose Food Type</option>
+                <option [ngValue]=1>Breakfast</option>
+                <option [ngValue]=2>Lunch</option>
+                <option [ngValue]=3>Dinner</option>
+            </select>
+                <div *ngIf="typesubmit && f.food_type.errors" class="invalid-feedback">
+                    <span *ngIf="f.food_type.errors.required">Food Type is required.</span>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="fw-bold">Date</label>
+                <input type="date" class="form-control" formControlName="date" />
+
+                <div *ngIf="typesubmit && f.date.errors" class="invalid-feedback">
+                    <span *ngIf="f.date.errors.required">Date is required.</span>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="fw-bold"> Food Option</label>
+                <select class="form-control" formControlName="food_option"
+                >
+                <option [ngValue]="null" [disabled]="true">Choose Food Options</option>
+                <option [ngValue]=1>Veg</option>
+                <option [ngValue]=2>Meat</option>
+                <option [ngValue]=3>Fish</option>
+                <option [ngValue]=4>Poultry</option>
+            </select>
+                <div *ngIf="typesubmit && f.food_option.errors" class="invalid-feedback">
+                    <span *ngIf="f.food_option.errors.required">Food Option is required.</span>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="fw-bold"> Number of Meals</label>
+                <input type="number" class="form-control" formControlName="num_of_meals" />
+                <div *ngIf="typesubmit && f.num_of_meals.errors" class="invalid-feedback">
+                    <span *ngIf="f.num_of_meals.errors.required">Number of Meals is required.</span>
+                </div>
+            </div>
+
+    
+            <div class="form-group mb-5 mt-4">
+                <div>
+                    <button type="submit" class="btn btn-primary float-end">
+                        Submit
+                    </button>
+                    <button type="reset" class="btn btn-secondary me-3 float-end">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</ng-template>
