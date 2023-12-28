@@ -3,7 +3,7 @@ export const environment = {
   // baseurl:"https://devlabapi.filscare.com/admin/",
   // SOCKET_ENDPOINT: 'https://devlabapi.filscare.com',
   // vendorurl:'https://devmerchant.filscare.com/',
-  baseurl: "https://dev.filsconnect.com/eventManager/",
+  baseurl: "https://dev.filsconnect.com/eventManager/v2/",
   SOCKET_ENDPOINT: "https://dev.filsconnect.com",
   vendorurl: "https://devmerchant.filsconnect.com/",
   //  baseurl:"https://testapi.filscare.com/admin/",
