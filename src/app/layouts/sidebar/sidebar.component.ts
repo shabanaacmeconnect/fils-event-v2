@@ -24,6 +24,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   merchantsData={support_count:0,drives_count:0,causes_count:0,pending_charity_transfer_count:0,pending_vendor_transfer_count:0}
   menuItems = [];
   configData;
+  logo=''
 
   @ViewChild('sideMenu') sideMenu: ElementRef;
 
@@ -35,7 +36,14 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
     });
    
      this.merchantsData= this.authFackservice.currentstatusvalue;
-  }
+ 
+     this.getsystemSettings()
+    }
+    getsystemSettings(){
+      this.authFackservice.get('/systemSettings').subscribe(res=>{
+        this.logo=res['data']['logo_path']
+      })
+    }
  
   ngOnInit() {
     this.initialize();
