@@ -29,8 +29,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
   year: number = new Date().getFullYear();
 // socket;
   // tslint:disable-next-line: max-line-length
+  footer=''
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,
-    private authFackservice: AuthfakeauthenticationService) { }
+    private authFackservice: AuthfakeauthenticationService) { 
+      this.authFackservice.get('auth/system_settings').subscribe(res=>{
+        this.footer=res['data']['footer_text']
+      })
+    }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -68,7 +73,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.authFackservice.login(this.loginForm.value.email,this.loginForm.value.password)
       .pipe(first()).subscribe(
         data => {
-          console.log('j',data)
           if(data['status']==true){
             if(this.authFackservice.currentUserValue['role']==6){
                   this.router.navigate(['/dashboard']);

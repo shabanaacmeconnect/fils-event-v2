@@ -27,9 +27,13 @@ export class ResetComponent implements OnInit, AfterViewInit {
   id=''
   // set the currenr year
   year: number = new Date().getFullYear();
-
+  footer=''
   // tslint:disable-next-line: max-line-length
-  constructor(private authFackservice: AuthfakeauthenticationService,private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) { }
+  constructor(private authFackservice: AuthfakeauthenticationService,private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) {
+    this.authFackservice.get('auth/system_settings').subscribe(res=>{
+      this.footer=res['data']['footer_text']
+    })
+   }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("token")?this.route.snapshot.paramMap.get("token"):'';
